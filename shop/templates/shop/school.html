@@ -1,0 +1,47 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Школа чая — Komaru Tea{% endblock %}
+{% block content %}
+<div class="page">
+  <div class="page-head">
+    <div>
+      <p class="eyebrow">Чайный дом</p>
+      <h1>Школа чая</h1>
+    </div>
+  </div>
+  <p class="lead">Один и тот же лист можно испортить кипятком или недодержать. Ниже — короткий учебный урок и памятка по заварке тех сортов, которые есть в каталоге Komaru Tea.</p>
+
+  <article class="lesson">
+    <div class="lesson-media">
+      <video class="lesson-video" controls playsinline preload="metadata" poster="{% static 'shop/img/hero-poster.jpg' %}">
+        <source src="{% static 'shop/video/lesson-gongfu.mp4' %}" type="video/mp4">
+      </video>
+    </div>
+    <div class="lesson-body">
+      <p class="eyebrow">Условный видеоурок · 1</p>
+      <h2>Пролив улуна в гайвани</h2>
+      <p>Учебный ролик чайного дома: прогрев посуды, короткая промывка листа и первый питьевой пролив. Это демонстрация для раздела, а не запись живого занятия.</p>
+      <ul class="lesson-steps">
+        <li>Прогрейте гайвань и чашку кипятком и слейте воду.</li>
+        <li>Положите лист, залейте водой около 95 °C и сразу слейте промывку.</li>
+        <li>Второй пролив держите 20–30 секунд и перелейте в чашку, не оставляя лист в воде.</li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="section-head school-head">
+    <h2>Как заваривать разные типы</h2>
+  </div>
+  <div class="brew-grid">
+    {% for guide in guides %}
+      <article class="brew-card">
+        <p class="eyebrow">{{ guide.examples }}</p>
+        <h3>{{ guide.title }}</h3>
+        <p class="brew-meta">{{ guide.water }} · {{ guide.time }}</p>
+        <p class="brew-ratio">{{ guide.ratio }}</p>
+        <p>{{ guide.text }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

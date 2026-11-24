@@ -38,6 +38,13 @@ class ShopAccessTests(TestCase):
         self.client.force_login(self.admin_user)
         self.assertEqual(self.client.get('/panel/').status_code, 200)
 
+    def test_tea_school_is_public(self):
+        response = self.client.get('/school/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Школа чая')
+        self.assertContains(response, 'Пролив улуна в гайвани')
+        self.assertContains(response, 'lesson-gongfu.mp4')
+
     def test_catalog_pages(self):
         category = Category.objects.create(name='Китайский чай', description='Описание')
         Product.objects.create(
